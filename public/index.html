@@ -10,6 +10,15 @@
   <div class="container">
     <h1>🎥 StreamZone</h1>
 
+    <div class="toggle-mode">
+      <label>
+        <input type="radio" name="mode" value="hls" checked /> HLS
+      </label>
+      <label>
+        <input type="radio" name="mode" value="mp4" /> MP4
+      </label>
+    </div>
+
     <div class="video-wrapper">
       <video id="video" controls></video>
     </div>
@@ -20,7 +29,7 @@
     </div>
 
     <form id="uploadForm" enctype="multipart/form-data">
-      <label for="fileInput">📤 Video yuklash:</label>
+      <label for="fileInput">📤 Video yuklash (faqat HLS uchun):</label>
       <input type="file" id="fileInput" name="file" accept="video/*" required />
       <button type="submit">Yuklash</button>
     </form>
