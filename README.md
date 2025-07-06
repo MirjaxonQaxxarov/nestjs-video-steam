@@ -1,8 +1,8 @@
 
 # 🎥 StreamZone — NestJS + HLS Video Streaming
 
-## 🇺🇿 NestJS orqali videoni yuklab, HLS formatda stream qilish (FFmpeg yordamida).  
-## 🇬🇧 Upload video and stream with HLS format via NestJS and FFmpeg.
+> 🇺🇿 NestJS orqali videoni yuklab, HLS formatda stream qilish (FFmpeg yordamida).  
+> 🇬🇧 Upload video and stream with HLS format via NestJS and FFmpeg.
 
 
 
