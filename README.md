@@ -1,10 +1,10 @@
-
 # 🎥 StreamZone — NestJS bilan MP4 + HLS video striming
+
 
 > 🇺🇿 HLS va MP4 formatda videolarni yuklash va uzatish  
 > 🇬🇧 Upload and stream videos in HLS or MP4 format
 
----
+
 
 ## 📦 Texnologiyalar | Technologies
 
