@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StreamZone 🎥</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎥 StreamZone</h1>
+
+    <div class="video-wrapper">
+      <video id="video" controls></video>
+    </div>
+
+    <div class="controls">
+      <label for="videoSelect">🎞️ Video tanlang:</label>
+      <select id="videoSelect"></select>
+    </div>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="fileInput">📤 Video yuklash:</label>
+      <input type="file" id="fileInput" name="file" accept="video/*" required />
+      <button type="submit">Yuklash</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>

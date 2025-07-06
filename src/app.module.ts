@@ -5,11 +5,19 @@ import { VideoModule } from './video/video.module';
 
 @Module({
   imports: [
+    // 1. HTML frontend uchun
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'hls'), // bu static fayllar uchun
-      serveRoot: '/videos/stream',           // bu URL prefix bo‘ladi
+      rootPath: join(__dirname, '..', 'public'),
+      exclude: ['/videos*'],
     }),
-    VideoModule, // video.controller.ts va video.service.ts shu yerda
+
+    // 2. HLS video fayllar uchun
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'hls'),
+      serveRoot: '/videos/stream',
+    }),
+
+    VideoModule,
   ],
 })
 export class AppModule {}
