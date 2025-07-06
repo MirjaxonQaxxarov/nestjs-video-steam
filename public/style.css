@@ -1,8 +1,8 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
@@ -12,7 +12,6 @@ body {
   padding: 2rem;
   min-height: 100vh;
 }
-
 .container {
   max-width: 800px;
   width: 100%;
@@ -22,24 +21,31 @@ body {
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
-
 h1 {
   text-align: center;
   margin-bottom: 1.5rem;
 }
-
 .video-wrapper {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
   margin-bottom: 1.5rem;
 }
-
 video {
   width: 100%;
   background-color: #000;
 }
-
+.toggle-mode {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+.toggle-mode label {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+}
 .controls,
 #uploadForm {
   display: flex;
@@ -48,7 +54,6 @@ video {
   gap: 1rem;
   margin-top: 1.5rem;
 }
-
 select,
 input[type="file"],
 button {
@@ -61,84 +66,18 @@ button {
   backdrop-filter: blur(5px);
   transition: 0.3s ease;
 }
-
 button:hover,
 select:hover {
   background: #ffffff33;
 }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 850px;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-    }
-
-    .video-wrapper {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
-      margin-bottom: 1.5rem;
-    }
-
-    video {
-      width: 100%;
-      background-color: #000;
-      outline: none;
-    }
-
-    .controls {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    select {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      background: #ffffff22;
-      border: none;
-      color: #fff;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
-      transition: 0.3s ease;
-    }
-
-    select:hover {
-      background: #ffffff33;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 1rem;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      select {
-        width: 100%;
-      }
-    }
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  select {
+    width: 100%;
+  }
+}

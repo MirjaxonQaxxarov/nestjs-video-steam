@@ -1,8 +1,8 @@
+# 🎥 StreamZone — NestJS bilan MP4 + HLS video striming
 
-# 🎥 StreamZone — NestJS + HLS Video Streaming
 
-> 🇺🇿 NestJS orqali videoni yuklab, HLS formatda stream qilish (FFmpeg yordamida).  
-> 🇬🇧 Upload video and stream with HLS format via NestJS and FFmpeg.
+> 🇺🇿 HLS va MP4 formatda videolarni yuklash va uzatish  
+> 🇬🇧 Upload and stream videos in HLS or MP4 format
 
 
 
@@ -12,9 +12,9 @@
 |------------------------|------------------------------|
 | NestJS — backend ramka | NestJS — backend framework   |
 | FFmpeg — HLS segmentlash | FFmpeg — HLS segmentation    |
-| HLS.js — frontendda o‘ynatish | HLS.js — frontend streaming |
-| HTML/CSS/JS — chiroyli interfeys | HTML/CSS/JS — clean UI        |
-| ServeStatic — static fayllar | ServeStatic — static files     |
+| ServeStatic — statik xizmat | ServeStatic — static delivery |
+| HLS.js — HLS videoni brauzerda o‘ynatish | HLS.js — stream playback |
+| HTML/CSS/JS — interfeys | HTML/CSS/JS — UI frontend     |
 
 ---
 
@@ -26,8 +26,8 @@
 ffmpeg -version
 ````
 
-Agar ishlamasa, [FFmpeg yuklab oling](https://www.gyan.dev/ffmpeg/builds/).
-If not installed, download it from [here](https://www.gyan.dev/ffmpeg/builds/).
+❗ Agar ishlamasa, [FFmpeg yuklab oling](https://www.gyan.dev/ffmpeg/builds/).
+❗ If not installed, download [FFmpeg here](https://www.gyan.dev/ffmpeg/builds/).
 
 ---
 
@@ -43,92 +43,115 @@ npm run start
 ## 📁 Loyihaning tuzilmasi | Project structure
 
 ```
-/backend
-├── uploads/             # 🇺🇿 Yuklangan fayllar        | 🇬🇧 Uploaded files
-├── hls/                 # 🇺🇿 Segmentlar va playlistlar | 🇬🇧 HLS segments
-└── public/              # 🇺🇿 Frontend fayllar          | 🇬🇧 Frontend files
+.
+├── public/                # 🎨 Frontend fayllari (HTML, CSS, JS)
+├── uploads/               # 📤 Yuklangan .mp4 videolar
+├── hls/                   # 🧩 HLS segmentlar (.m3u8, .ts)
+├── src/
+│   └── video/             # 🎯 Video controller va service
+└── main.ts
 ```
 
 ---
 
-## 📤 Yuklash va o‘ynatish | Upload & Play
+## 📤 Yuklash va ko‘rish | Upload & Play
 
-| 🇺🇿                                                    | 🇬🇧                                    |
-| ------------------------------------------------------- | --------------------------------------- |
-| Frontendda foydalanuvchi video yuklaydi                 | User uploads video from frontend        |
-| Video `uploads/` papkaga tushadi                        | Video is saved in `uploads/`            |
-| FFmpeg avtomatik `hls/` ichiga `.m3u8` va `.ts` bo‘ladi | FFmpeg converts to HLS (`.m3u8`, `.ts`) |
+| 🇺🇿                                      | 🇬🇧                            |
+| ----------------------------------------- | ------------------------------- |
+| Foydalanuvchi video yuklaydi              | User uploads a video            |
+| `.mp4` `uploads/` ga tushadi              | `.mp4` goes to `uploads/`       |
+| HLS rejimida `.m3u8` yaratiladi           | `.m3u8` is generated via FFmpeg |
+| HLS yoki MP4 ni frontendda tanlash mumkin | User can toggle HLS or MP4      |
 
 ---
 
 ## 🖥 Frontend
 
-`/public` ichida joylashgan: `index.html`, `style.css`, `script.js`
+`/public` ichida joylashgan:
 
-| 🇺🇿 Xususiyatlar       | 🇬🇧 Features           |
-| ----------------------- | ----------------------- |
-| HLS.js orqali stream    | Stream with HLS.js      |
-| Video tanlash drop-down | Video selector dropdown |
-| Fayl yuklash formasi    | Upload form             |
-| Responsive dizayn       | Responsive design       |
+* `index.html`
+* `style.css`
+* `script.js`
+
+### ✨ Funksiyalar | Features
+
+| 🇺🇿                             | 🇬🇧                     |
+| -------------------------------- | ------------------------ |
+| HLS va MP4 o‘rtasida tanlash     | HLS vs MP4 toggle switch |
+| HLS.js orqali striming           | HLS.js streaming         |
+| MP4 to‘g‘ridan-to‘g‘ri o‘ynatish | MP4 direct playback      |
+| Responsive dizayn                | Mobile-friendly UI       |
+| Foydalanuvchidan yuklash formasi | Upload form              |
 
 ---
 
 ## 📡 API Endpointlar | Endpoints
 
-| URL                                   | Tavsif 🇺🇿 / Description 🇬🇧           |
-| ------------------------------------- | ---------------------------------------- |
-| `GET /videos/list`                    | 🎞️ Video ro‘yxatini olish / List videos |
-| `POST /videos/upload`                 | 📤 Video yuklash / Upload video          |
-| `GET /videos/stream/:name/index.m3u8` | 📺 Stream link for playback              |
+| URL                                   | Tavsif 🇺🇿 / Description 🇬🇧      |
+| ------------------------------------- | ----------------------------------- |
+| `GET /videos/list`                    | 📺 HLS video ro‘yxati / HLS list    |
+| `GET /videos/list-mp4`                | 🎞 MP4 video ro‘yxati / MP4 list    |
+| `POST /videos/upload`                 | 📤 HLS uchun video yuklash / upload |
+| `GET /videos/stream/:name/index.m3u8` | HLS stream link                     |
+| `GET /videos/mp4/:filename`           | MP4 video stream (direct)           |
 
 ---
 
-## 🌐 Misol URL | Example URLs
+## 🌐 Misol URL | Example Usage
 
 ```bash
-http://localhost:3000/                        # Frontend sahifa / frontend
-http://localhost:3000/videos/list            # Video ro‘yxati / video list
-http://localhost:3000/videos/stream/film1/index.m3u8  # Stream HLS URL
+http://localhost:3000/                         # 🌐 Frontend sahifa
+http://localhost:3000/videos/list              # 📄 HLS ro‘yxat
+http://localhost:3000/videos/list-mp4          # 🎞 MP4 ro‘yxat
+http://localhost:3000/videos/stream/test/index.m3u8   # 📡 HLS link
+http://localhost:3000/videos/mp4/test.mp4              # ▶️ MP4 to‘g‘ridan-to‘g‘ri uzatish
 ```
 
 ---
 
-## 🧱 ServeStatic sozlamasi | Static config
+## ⚙ ServeStatic sozlamasi | ServeStatic config
 
-NestJS `ServeStaticModule`:
+NestJS `AppModule` faylida quyidagicha:
 
 ```ts
 ServeStaticModule.forRoot([
   {
     rootPath: join(__dirname, '..', 'public'),
-    serveRoot: '/',
+    serveRoot: '/', // HTML sahifa
   },
   {
     rootPath: join(__dirname, '..', 'hls'),
-    serveRoot: '/videos/stream',
+    serveRoot: '/videos/stream', // HLS segmentlar
+  },
+  {
+    rootPath: join(__dirname, '..', 'uploads'),
+    serveRoot: '/videos/mp4', // MP4 fayllar
   },
 ])
 ```
 
 ---
 
-## ✅ Qulayliklar | Benefits
+## ✅ Afzalliklar | Benefits
 
-| 🇺🇿                              | 🇬🇧                         |
-| --------------------------------- | ---------------------------- |
-| Bir nechta videoni tanlash mumkin | Select from multiple videos  |
-| Oddiy yuklash interfeysi          | Simple upload UI             |
-| Avtomatik `.m3u8` yaratish        | Automatic `.m3u8` generation |
-| Mobilga mos dizayn                | Mobile-friendly design       |
+| 🇺🇿                             | 🇬🇧                       |
+| -------------------------------- | -------------------------- |
+| MP4 va HLS formatlar             | MP4 and HLS support        |
+| Stream qilish imkoniyati         | Seamless streaming         |
+| Yuklash va avtomatik segmentlash | Upload + auto-segmentation |
+| Toggle bilan rejimni tanlash     | Toggle playback mode       |
+
+---
+
+## 🔮 Kelajakda qo‘shilishi mumkin | Optional Improvements
+
+* 🔐 JWT autentifikatsiya
+* ☁️ AWS S3 bilan integratsiya
+* 📈 Video yuklash progress bar
+* ⚡ React yoki NextJS frontend
 
 ---
 
-## 🧩 Qo‘shimcha imkoniyatlar | Optional Features
+💡 Takliflar yoki xatoliklar bo‘lsa: [https://github.com/Mirjaxonqaxxarov](https://github.com/Mirjaxonqaxxarov) yoki PR yuboring.
+📬 Contact us for more improvements!
 
-* 🔐 JWT autentifikatsiya / JWT Auth
-* ☁️ AWS S3 integratsiyasi / S3 integration
-* ⚙️ Video preview, progress bar, spinner
-* 🧠 React versiyasi mavjud / React version available
-
----
