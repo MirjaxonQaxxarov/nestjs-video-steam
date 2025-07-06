@@ -152,6 +152,6 @@ ServeStaticModule.forRoot([
 
 ---
 
-💡 Takliflar yoki xatoliklar bo‘lsa: [https://github.com/Mirjaxonqaxxarov](https://github.com/Mirjaxonqaxxarov) yoki PR yuboring.
+💡 Takliflar yoki xatoliklar bo‘lsa: [Issues](https://github.com/MirjaxonQaxxarov/nestjs-video-steam/issues) yoki PR yuboring.
 📬 Contact us for more improvements!
 
